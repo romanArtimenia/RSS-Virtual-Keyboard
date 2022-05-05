@@ -1,4 +1,4 @@
-import KEYS from '../js/keys';
+import KEYS from '../js/keys.js';
 
 function createDomNodeEl(element, innerHTML, ...classes) {
   const nodeEl = document.createElement(element);
