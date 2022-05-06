@@ -1,4 +1,4 @@
-import Keyboard, { createDomNodeEl } from './assets/js/keybord';
+import Keyboard, { createDomNodeEl } from './assets/js/keybord.js';
 
 const title = ' RSS Virtual Keyboard';
 const subTitle1 = 'Change Language: Shift + Alt';
