@@ -1,4 +1,4 @@
-import KEYS from '../js/keys.js';
+import KEYS from './keys';
 
 function createDomNodeEl(element, innerHTML, ...classes) {
   const nodeEl = document.createElement(element);
@@ -87,7 +87,7 @@ class Keyboard {
     const container = createDomNodeEl('div', '', 'keyboard-container');
     this.checkLang();
     //  row
-    for (let i = 0; i < KEYS.length; i++) {
+    for (let i = 0; i < KEYS.length; i += 1) {
       const row = createDomNodeEl('div', '', 'keyboard-row');
       KEYS[i].forEach((e) => {
         // Create  key

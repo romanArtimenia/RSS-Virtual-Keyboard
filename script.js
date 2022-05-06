@@ -1,28 +1,21 @@
-import Keyboard, { createDomNodeEl } from './assets/js/keybord.js';
+import Keyboard, { createDomNodeEl } from './assets/js/keybord';
 
 const title = ' RSS Virtual Keyboard';
 const subTitle1 = 'Change Language: Shift + Alt';
 const subTitle2 = 'Made for: Windows';
 const footerText = 'Created by Roman Artimenia, RS-School, 2022';
 const textField = createDomNodeEl('textarea', '', 'textfield');
-textField.setAttribute("rows", 10);
+textField.setAttribute('rows', 10);
 const keyboard = new Keyboard();
 const footer = createDomNodeEl('footer', footerText, 'footer');
-function testCapsLock(event) {
-  if (event.getModifierState('CapsLock')) {
-    document.querySelector('.caps-icon').classList.add('caps-on');
-  } else {
-    document.querySelector('.caps-icon').classList.remove('caps-on');
-  }
-}
+const body = document.getElementById('body');
 // events:
 function keyPress(event, button, code) {
   let text = '';
   let cursor = textField.selectionStart;
   event.preventDefault();
   textField.focus();
-  if (code === 'CapsLock')
-    keyboard.changeCapsLock(event);
+  if (code === 'CapsLock') { keyboard.changeCapsLock(event); }
   if ((code === 'AltLeft' && (event.shiftKey || keyboard.shift))
         || (code === 'AltRight' && (event.shiftKey || keyboard.shift))
         || (code === 'ShiftLeft' && event.altKey)
@@ -31,10 +24,8 @@ function keyPress(event, button, code) {
     keyboard.changeLang(event);
     keyboard.removeShift(event);
   }
-  if (code === 'ShiftLeft' || code === 'ShiftRight')
-    keyboard.updateKeyboard(event);
-  if (code === 'ArrowLeft' && cursor > 0)
-    textField.setSelectionRange(cursor - 1, cursor - 1);
+  if (code === 'ShiftLeft' || code === 'ShiftRight') { keyboard.updateKeyboard(event); }
+  if (code === 'ArrowLeft' && cursor > 0) { textField.setSelectionRange(cursor - 1, cursor - 1); }
   if (code === 'ArrowRight') {
     cursor = textField.selectionEnd;
     textField.setSelectionRange(cursor + 1, cursor + 1);
@@ -50,8 +41,7 @@ function keyPress(event, button, code) {
     } else {
       cursor -= textBeforeCursor[textBeforeCursor.length - 1].length + 1;
     }
-    if (cursor < 0)
-      cursor = 0;
+    if (cursor < 0) { cursor = 0; }
     textField.setSelectionRange(cursor, cursor);
   }
   if (code === 'ArrowDown') {
@@ -72,12 +62,9 @@ function keyPress(event, button, code) {
     }
     textField.setSelectionRange(cursor, cursor);
   }
-  if (code === 'Tab')
-    text = '    ';
-  if (code === 'Enter')
-    text = '\n';
-  if (code === 'Backspace')
-    text = '-1';
+  if (code === 'Tab') { text = '    '; }
+  if (code === 'Enter') { text = '\n'; }
+  if (code === 'Backspace') { text = '-1'; }
   if (!button.dataset.noType) {
     text = button.textContent;
     keyboard.removeShift(event);
@@ -90,13 +77,11 @@ function keyPress(event, button, code) {
       if (cursor === textField.selectionEnd) {
         textBeforeCursor = textBeforeCursor.slice(0, -1);
         cursor -= (cursor > 0) ? 2 : 1;
-      } else
-        cursor -= 1;
+      } else { cursor -= 1; }
     }
     textField.value = textBeforeCursor + text + textAfterCursor;
     textField.setSelectionRange(cursor + 1, cursor + 1);
-    if (text === '    ')
-      textField.setSelectionRange(cursor + 4, cursor + 4);
+    if (text === '    ') { textField.setSelectionRange(cursor + 4, cursor + 4); }
   }
 }
 //  header
@@ -109,7 +94,7 @@ function createHeader() {
   subheading.append(createDomNodeEl('p', subTitle1, 'subheading-text'));
   subheading.append(createDomNodeEl('p', subTitle2, 'subheading-text'));
 }
-  
+
 window.onload = () => {
   createHeader();
   body.append(textField);
@@ -122,7 +107,7 @@ window.onload = () => {
       keyPress(event, button, event.code);
     }
   });
-  
+
   document.addEventListener('keyup', (event) => {
     const button = document.querySelector(`[data-code=${event.code}]`);
     if (button) {
