@@ -1,0 +1,141 @@
+
+
+
+
+.keyboard {
+  width: 95%;
+  max-width: 948px;
+  height: 340px;
+  margin: 24px auto 40px;
+ border: 2px solid;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyboard-container {
+  position: relative;
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 310px;
+  gap: 10px;
+  
+}
+
+.keyboard-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  display: flex;
+background-color: $color-dark-s;
+  border: 2px solid ;
+  width:3rem;
+  height: 3rem;
+  box-sizing: border-box;
+ 
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  transition: all .1s;
+  
+
+  &:hover {
+    border: 2px solid green;
+    cursor: pointer;
+  }
+
+  &:active, &.active {
+      border: 2px solid #718BB1;
+    box-sizing: border-box;
+
+  }
+
+  &.key-backspace {
+    max-width: 6.5rem;
+    width: auto;
+    font-size: 1em;
+  }
+  
+
+  &.key-backslash {
+    width: 107px;
+  }
+
+  &.key-capslock {
+    display: flex;
+    width: 107px;
+    gap: 10px;
+    font-size: 20px;
+    line-height: 20px;
+    justify-content: flex-start;
+    text-align: center;
+
+    .caps-icon {
+      margin-left: 8px;
+      font-size: 2rem;
+      color: $color-dark-xl;
+
+      &.caps-on {
+        color: green;
+
+      }
+    }
+  }
+
+  &.key-tab, &.key-leftalt, &.key-rightalt, &.key-leftctrl, &.key-rightctrl {
+    width: 81px;
+  }
+
+  &.key-leftshift {
+    width: 135px;
+  }
+
+  &.key-rightshift {
+    width: 117px;
+  }
+
+  &.key-enter {
+    width: 145px;
+  }
+
+  &.key-space {
+    width: 346px;
+  }
+}
+
+@media (max-width: 490px) {
+  .key {
+    &.key-backspace {
+ 
+   font-size: 10px;
+  }
+  &.key-capslock {
+    gap: 2px;
+    
+   width: 100px;
+    font-size: 10px;
+    
+
+  }
+  &.key-leftshift {
+    width: auto;
+    font-size: 10px;
+  }
+
+  &.key-rightshift {
+    width: auto;
+    font-size: 10px;
+  }
+}
+}
